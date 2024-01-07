@@ -68,6 +68,13 @@ router.put('/:id', (req, res) => {
       id: req.params.id
     },
   })
+  .then(categoryData => {
+    if (!categoryData[0]) {
+      res.status(404).json({ message: "No Category found with that ID."});
+      return;
+    }
+    res.json(categoryData);
+  })
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
