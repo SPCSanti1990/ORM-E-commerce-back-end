@@ -2,6 +2,7 @@
 Object related mapping
 
 ## Description:
+Build the back end for an e-commerce site using Express.js API and configure it to use Sequelize to interact with a MYSQL database.
 
 ## The Challenge:
 
@@ -30,8 +31,12 @@ THEN I am able to successfully create, update, and delete data in my database
 ## Screenshot:
 [screenshot](./assets/img/Screenshot%202024-01-01%20173433.png) change to actual screenshot
 ## What I Learned:
-1. 
-2. 
+1. How to link a category to a single model
+2. How to link a category to multiple models
+3. How to link mutiple tags to many products
 
 ## Repository Link:
 [Repository Link 'Click Here'.](https://github.com/SPCSanti1990/ORM-E-commerce-back-end)
+
+## Walkthrough Video Link
+[Walkthrogu Video 'Click Here'.](https://drive.google.com/file/d/1lmOX6HiodtKHo_byRDgJA4Mvp18SxM2b/view)
