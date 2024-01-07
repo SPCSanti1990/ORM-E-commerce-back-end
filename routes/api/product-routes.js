@@ -9,23 +9,23 @@ router.get('/', (req, res) => {
   // be sure to include its associated Category and Tag data
   Product.findAll(
     {
-      include: [
-        {
-          model: Category,
-          attributes: ['id','category_name']
-        },
-        {
-          model: Tag,
-          attributes: ['id','tag_name']
-        }
-      ]
-    }
-  )
-  .then(productData => res.json(productData))
-  .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+      attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+        include: [
+            {
+                model: Category,
+                attributes: ['id', 'category_name']
+            },
+            {
+                model: Tag,
+                attributes: ['id', 'tag_name']
+            }
+        ]
+    })
+        .then(productData => res.json(productData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 // get one product
@@ -35,21 +35,29 @@ router.get('/:id', (req, res) => {
   Product.findOne({
     where: {
       id: req.params.id
-    },
-    include: [{
-      model: Category,
-      attributes: ['id','category_name']
-    },
-    {
-      model: Tag,
-      attributes: ['id','tag_name']
-    }
+  },
+  attributes: ['id', 'product_name', 'price', 'stock', 'category_id'],
+  include: [
+      {
+          model: Category,
+          attributes: ['id', 'category_name']
+      },
+      {
+          model: Tag,
+          attributes: ['id', 'tag_name']
+      }
   ]
+})
+  .then(productData => {
+      if (!productData) {
+          res.status(404).json({ message: 'No product found with that ID' });
+          return;
+      }
+      res.json(productData);
   })
-  .then(productData => res.json(productData))
   .catch(err => {
-    console.log(err);
-    res.status(500).json(err);
+      console.log(err);
+      res.status(500).json(err);
   });
 });
 
